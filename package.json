@@ -4,7 +4,8 @@
   "description": "hello world example of ifc.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -w -c ./rollup.config.js"
   },
   "repository": {
     "type": "git",

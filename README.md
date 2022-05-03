@@ -182,6 +182,57 @@ which is short for:
 npx rollup index.js --file bundle.js --format es --plugin @rollup/plugin-node-resolve
 ```
 
-We will write a config file in the next steps to save the bundling configuration and run the file instead of typing the entire command each time.
+### Bundling config
 
+Next, we'll create the rollup configuration file to save the bundling configuration and run the file instead of typing the entire command each time. This file has to be called `rollup.config.js` and includes the reference to the plugins we have previously installed.
+
+```javascript
+import resolve from '@rollup/plugin-node-resolve';
+
+export default {
+  input: 'index.js',
+  output: [
+    {
+      format: 'esm',
+      file: 'bundle.js'
+    },
+  ],
+  plugins: [
+    resolve(),
+  ]
+};
+```
+
+Also, the `package.json` file needs to be modified to contain the commands to control rollup easily. In each command, you'll have to specify the relative path to your rollup configuration file. If we have installed everything correctly, we should see the same dependencies in this file (the version of the libraries may differ).
+
+- `npm run build` will bundle the project and create a file called bundle.js in the root directory of the project.
+
+- `npm run watch` will activate the watch mode, updating that file automatically every time we make changes to the code and save it.
+
+```json
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "-",
+  "main": "app.js",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "watch": "rollup -w -c ./rollup.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "rollup": "^2.45.2"
+  },
+  "dependencies": {
+    "three": "^0.128.0",
+    "web-ifc-three": "0.0.102"
+  }
+}
+```
+
+### Running the app
+
+To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
 
