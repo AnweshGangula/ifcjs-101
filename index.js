@@ -17,17 +17,19 @@ import { IFCLoader } from "web-ifc-three/IFCLoader";
 const ifcLoader = new IFCLoader();
 
 const input = document.getElementById("file-input");
-input.addEventListener(
-    "change",
-    (changed) => {
-        const file = changed.target.files[0];
-        var ifcURL = URL.createObjectURL(file);
-        ifcLoader.load(
-            ifcURL,
-            (ifcModel) => scene.add(ifcModel));
-    },
-    false
-);
+// input.addEventListener(
+//     "change",
+//     (changed) => {
+//         scene.remove(defaultModel);
+//         // scene.remove.apply(scene, scene.children);
+//         const file = changed.target.files[0];
+//         var ifcURL = URL.createObjectURL(file);
+//         ifcLoader.load(
+//             ifcURL,
+//             (ifcModel) => scene.add(ifcModel));
+//     },
+//     false
+// );
 
 //Creates the Three.js scene
 const scene = new Scene();
@@ -98,3 +100,12 @@ window.addEventListener("resize", () => {
     camera.updateProjectionMatrix();
     renderer.setSize(size.width, size.height);
 });
+
+let defaultModel;
+
+ifcLoader.load(
+    "models/rac_basic_sample_project.ifc",
+    (ifcModel) => {
+        defaultModel = ifcModel;
+        scene.add(defaultModel);
+    });
