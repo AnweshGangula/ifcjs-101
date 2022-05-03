@@ -1,0 +1,32 @@
+{
+  "name": "ifcjs-101",
+  "version": "1.0.0",
+  "description": "hello world example of ifc.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnweshGangula/ifcjs-101.git"
+  },
+  "keywords": [
+    "ifcjs",
+    "BIM",
+    "AEC"
+  ],
+  "author": "Anwesh Gangula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnweshGangula/ifcjs-101/issues"
+  },
+  "homepage": "https://github.com/AnweshGangula/ifcjs-101#readme",
+  "dependencies": {
+    "three": "^0.140.0",
+    "web-ifc-three": "^0.0.115"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.71.1"
+  }
+}
