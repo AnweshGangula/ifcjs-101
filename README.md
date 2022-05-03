@@ -285,3 +285,8 @@ input.addEventListener(
 
 If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/) in your local server. From here, the possibilities are endless.
 
+
+## What else can I do with IFC.js?
+
+This is just the beginning. You can take a look at [web-ifc-viewer](https://github.com/IFCjs/web-ifc-viewer), which includes tools for object selection, changing geometry appearance, section planes and much more. You can try it [here](https://ifcjs.github.io/web-ifc-viewer/example/index).
+
