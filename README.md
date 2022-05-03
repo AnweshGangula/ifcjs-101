@@ -237,6 +237,10 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 
 To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
 
+And every time you make a change in the javascript (`index.js`), you need to re-build the code using `npm run build` so that the `bundle.js` gets updated with the changes.
+
+> Alternatively, you can run `npm run watch` so that rollup automatically watches for changes and bundles the code for you.
+
 --------------------------------------------------------------------------------
 
 > Note that all the code above is a basic set-up of a three.js environment and does not contain any ifc.js implementation yet. Below steps is where we are going to interact with ifc.js and add it in the above three.js environment
