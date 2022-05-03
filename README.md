@@ -4,7 +4,8 @@ Hello world example of IFC.js
 
 This project is set-up by following the instruction provided in the IFC.js [Hello World documentation](https://ifcjs.github.io/info/docs/Hello%20world)
 
-## Setting up the project
+# Setting up the project (Pre-IFC.js)
+
 
 ### Install libraries
 
@@ -235,4 +236,52 @@ Also, the `package.json` file needs to be modified to contain the commands to co
 ### Running the app
 
 To run the application locally we will need a local server. If you are using VS Code as IDE, one option is to install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), which allows us to open an instance of Google Chrome, run our web application and see the changes we make to the code in real-time.
+
+--------------------------------------------------------------------------------
+
+> Note that all the code above is a basic set-up of a three.js environment and does not contain any ifc.js implementation yet. Below steps is where we are going to interact with ifc.js and add it in the above three.js environment
+
+## Setting up the project (IFC.js)
+
+### WebAssembly
+
+The next thing to do is to copy the web-ifc.wasm and `web-ifc-mt.wasm` files to a directory in your project. It can be found in `node_modules\web-ifc` (or `node_modules\three\examples\jsm\loaders\ifc` if you are only using Three's IFCLoader). We can copy them wherever we want; in this example, they will be copied to a folder called wasm in the root directory of the project.
+
+These files are necessary because they contain the compiled C++ logic of [web-ifc](https://github.com/IFCjs/web-ifc), which is the parsing core to read and write IFC files with native speed.
+
+> These files have to be served statically in your application. This might need different tweaks if you are using frameworks or libraries like React, Angular, Vue or Svelte.
+
+### Loading IFC files (user-uploaded)
+
+Finally, we will use IFC.js to load IFC files. This can be done by instantiating the loader and creating an event for when the user uploads an IFC file to the HTML input element.
+
+```javascript
+import { IFCLoader } from "web-ifc-three/IFCLoader";
+
+// Sets up the IFC loading
+const ifcLoader = new IFCLoader();
+
+const input = document.getElementById("file-input");
+input.addEventListener(
+    "change",
+    (changed) => {
+        const file = changed.target.files[0];
+        var ifcURL = URL.createObjectURL(file);
+        ifcLoader.load(
+            ifcURL,
+            (ifcModel) => scene.add(ifcModel));
+    },
+    false
+);
+```
+
+> Keep in mind that if you haven't saved the wasm files in the root of served files of the project, you'll need to specify its location with `setWasmPath`. For instance, if we had them stored in a folder called `wasm` contained in a folder called `static` in the root of the project, we would do the following:
+
+> ```
+> ifcLoader.ifcManager.setWasmPath("static/wasm/");
+> ```
+
+![IFC.js load uploaded model.jpg](ReadMe_images\IFC.js_load_uploaded_model.jpg)
+
+If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/) in your local server. From here, the possibilities are endless.
 
