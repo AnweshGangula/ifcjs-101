@@ -4,6 +4,12 @@ Hello world example of IFC.js
 
 This project is set-up by following the instruction provided in the IFC.js [Hello World documentation](https://ifcjs.github.io/info/docs/Hello%20world)
 
+- This repo uses [web-ifc-three](https://ifcjs.github.io/info/docs/Guide/web-ifc-three/Introduction) which is a boilerplate 3D BIM Viewer with no in-built functionalities. You can use this if you want to build your own custom application with full control over the implementation.
+
+- Also check-out [web-ifc-viewer](https://ifcjs.github.io/info/docs/Guide/web-ifc-viewer/Introduction) which is a 3D BIM viewer with many tools and functionalities already implemented (section drawings, dimensions, etc.), allowing you to create BIM tools with very little effort.
+
+  - Check out [this repo](https://github.com/AnweshGangula/ifcjs-viewer-101) for basics
+
 # Setting up the project (Pre-IFC.js)
 
 
@@ -285,7 +291,8 @@ input.addEventListener(
 > ifcLoader.ifcManager.setWasmPath("static/wasm/");
 > ```
 
-![IFC.js load uploaded model.jpg](ReadMe_images\IFC.js_load_uploaded_model.jpg)
+![IFC.js load uploaded model.jpg](ReadMe_images/IFC.js_load_uploaded_model.jpg)
+
 
 If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/) in your local server. From here, the possibilities are endless.
 
