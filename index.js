@@ -12,6 +12,7 @@ import {
 } from "three/examples/jsm/controls/OrbitControls";
 
 import { IFCLoader } from "web-ifc-three/IFCLoader";
+let currentModel;
 
 // Sets up the IFC loading
 const ifcLoader = new IFCLoader();
@@ -20,11 +21,16 @@ const input = document.getElementById("file-input");
 input.addEventListener(
     "change",
     (changed) => {
+        scene.remove(currentModel);
+        // scene.remove.apply(scene, scene.children);
         const file = changed.target.files[0];
         var ifcURL = URL.createObjectURL(file);
         ifcLoader.load(
             ifcURL,
-            (ifcModel) => scene.add(ifcModel));
+            (ifcModel) => {
+                currentModel = ifcModel;
+                scene.add(currentModel);
+            });
     },
     false
 );
@@ -98,3 +104,10 @@ window.addEventListener("resize", () => {
     camera.updateProjectionMatrix();
     renderer.setSize(size.width, size.height);
 });
+
+ifcLoader.load(
+    "models/01.ifc",
+    (ifcModel) => {
+        currentModel = ifcModel;
+        scene.add(currentModel)
+    });

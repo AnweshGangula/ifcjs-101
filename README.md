@@ -296,6 +296,23 @@ input.addEventListener(
 
 If you have done everything correctly, you should be able to see something similar to [this](https://ifcjs.github.io/hello-world/examples/web-ifc-three/helloworld/) in your local server. From here, the possibilities are endless.
 
+# Loading IFC Models (from server)
+
+In the above section we saw how to load BIM models directly, and that's great. What if we want to show our BIM models instead of allowing the user to upload theirs? This is very simple. Generally there are two possibilities:
+
+- Having the IFC in the same application where you want to display it.
+- Having to get it from an external storage service.
+
+In the first case, it is sufficient to reference the URL of the IFC file. That is, its relative path in the application. For example, if the IFC is in a folder called "models" in the root of the project, we could load that IFC when starting the application as follows:
+
+```javascript
+ifcLoader.load(
+    "models/Example_model.ifc",
+    (ifcModel) => scene.add(ifcModel));
+```
+
+> Getting a file from a remote storage service varies depending on the service used. However, the logic is the same: get the information, create a URL and pass it as an argument to the IFCLoader.
+
 
 ## What else can I do with IFC.js?
 
