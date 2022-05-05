@@ -12,24 +12,28 @@ import {
 } from "three/examples/jsm/controls/OrbitControls";
 
 import { IFCLoader } from "web-ifc-three/IFCLoader";
+let currentModel;
 
 // Sets up the IFC loading
 const ifcLoader = new IFCLoader();
 
 const input = document.getElementById("file-input");
-// input.addEventListener(
-//     "change",
-//     (changed) => {
-//         scene.remove(defaultModel);
-//         // scene.remove.apply(scene, scene.children);
-//         const file = changed.target.files[0];
-//         var ifcURL = URL.createObjectURL(file);
-//         ifcLoader.load(
-//             ifcURL,
-//             (ifcModel) => scene.add(ifcModel));
-//     },
-//     false
-// );
+input.addEventListener(
+    "change",
+    (changed) => {
+        scene.remove(currentModel);
+        // scene.remove.apply(scene, scene.children);
+        const file = changed.target.files[0];
+        var ifcURL = URL.createObjectURL(file);
+        ifcLoader.load(
+            ifcURL,
+            (ifcModel) => {
+                currentModel = ifcModel;
+                scene.add(currentModel);
+            });
+    },
+    false
+);
 
 //Creates the Three.js scene
 const scene = new Scene();
@@ -101,11 +105,9 @@ window.addEventListener("resize", () => {
     renderer.setSize(size.width, size.height);
 });
 
-let defaultModel;
-
 ifcLoader.load(
-    "models/rac_basic_sample_project.ifc",
+    "models/01.ifc",
     (ifcModel) => {
-        defaultModel = ifcModel;
-        scene.add(defaultModel);
+        currentModel = ifcModel;
+        scene.add(currentModel)
     });
